@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="352dp"
+            android:layout_height="535dp"
+            android:scaleType="center"
+            android:src="@drawable/petanim"
+            android:background="@android:color/background_light"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="8dp" />
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

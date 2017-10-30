@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/common_google_signin_btn_text_dark_disabled"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background">
+
+            <ImageView
+                android:id="@+id/imageViewPet"
+                android:layout_width="337dp"
+                android:layout_height="407dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/pet"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="143dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/health"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </android.support.design.widget.AppBarLayout>
+
+</LinearLayout>
