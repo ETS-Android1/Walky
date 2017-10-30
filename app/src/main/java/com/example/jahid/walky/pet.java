@@ -3,9 +3,8 @@ package com.example.jahid.walky;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,36 +12,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.Timer;
+import java.util.TimerTask;
 
+/**
+ * Created by rubai on 10/29/2017.
+ */
+
+public class pet extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.pet_home);
 
-        ImageView location = (ImageView) findViewById(R.id.imageViewLocation);
-        location.setOnClickListener(new View.OnClickListener() {
+        ImageView petanim = (ImageView) findViewById(R.id.imageViewPet);
+        petanim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
-                startActivity(intent);
+                petanim();
+                //Intent intent = new Intent(getApplicationContext(), petanim.class);
+                //startActivity(intent);
+
             }
         });
+        ProgressBar prg = (ProgressBar)findViewById(R.id.health);
+        prg.setProgress(50);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -91,16 +92,30 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_progress) {
+        if (id == R.id.nav_routes) {
+            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_progress) {
             Intent intent = new Intent(getApplicationContext(),ProgressActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.nav_pet) {
-            Intent intent = new Intent(getApplicationContext(), pet.class);
-            startActivity(intent);
-        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    void petanim()
+    {
+        setContentView(R.layout.petanim);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), pet.class);
+                startActivity(intent);
+            }
+        },38*80+100);
+
+    }
 }
+
