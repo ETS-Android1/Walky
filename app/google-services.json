@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "858236688893",
+    "firebase_url": "https://walky-747ca.firebaseio.com",
+    "project_id": "walky-747ca",
+    "storage_bucket": "walky-747ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858236688893:android:edf86d99fb469dee",
+        "android_client_info": {
+          "package_name": "com.example.jahid.walky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858236688893-rmm7bs3o3e6re6a0f40aanhvp5l8ghta.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jahid.walky",
+            "certificate_hash": "35c3daf0a6be7e7d737d53f8b1da8f82b855c388"
+          }
+        },
+        {
+          "client_id": "858236688893-0hr65efss5h6tf85f1hon651fpmiv77f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAznyl9QwFfHOC3x61tIs75CG-LWPPyxcY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858236688893-0hr65efss5h6tf85f1hon651fpmiv77f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

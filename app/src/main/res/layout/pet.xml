@@ -29,17 +29,32 @@
                 android:layout_height="407dp"
                 android:scaleType="center"
                 app:srcCompat="@drawable/pet"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="143dp" />
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <ProgressBar
+                android:id="@+id/health"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="255dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                tools:layout_editor_absoluteY="441dp"
+                android:layout_marginLeft="88dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:progressTint="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="72dp"
+                android:layout_height="42dp"
+                android:text="Health"
+                android:textSize="22dp"
+                android:textColor="@android:color/black"
+
+                tools:layout_editor_absoluteY="445dp"
+                tools:layout_editor_absoluteX="32dp" />
 
         </android.support.constraint.ConstraintLayout>
-
-        <ProgressBar
-            android:id="@+id/health"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
 
     </android.support.design.widget.AppBarLayout>
 

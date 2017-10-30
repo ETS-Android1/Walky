@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,8 +40,13 @@ public class pet extends AppCompatActivity implements NavigationView.OnNavigatio
 
             }
         });
+
+       // TextView text= (TextView) findViewById(R.id.textView2);
+        //text.setTextColor(0);
+        //text.setText("health");
         ProgressBar prg = (ProgressBar)findViewById(R.id.health);
         prg.setProgress(50);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -97,6 +103,10 @@ public class pet extends AppCompatActivity implements NavigationView.OnNavigatio
             startActivity(intent);
         } else if (id == R.id.nav_progress) {
             Intent intent = new Intent(getApplicationContext(),ProgressActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.signout) {
+            Intent intent = new Intent(getApplicationContext(),GoogleSignInActivity.class);
             startActivity(intent);
         }
 
