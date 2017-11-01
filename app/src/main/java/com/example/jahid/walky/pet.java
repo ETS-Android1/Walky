@@ -99,7 +99,7 @@ public class pet extends AppCompatActivity implements NavigationView.OnNavigatio
         int id = item.getItemId();
 
         if (id == R.id.nav_routes) {
-            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+            Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_progress) {
             Intent intent = new Intent(getApplicationContext(),ProgressActivity.class);
