@@ -38,7 +38,6 @@ public class GoogleSignInActivity extends BaseActivity implements
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
-    public static final int REQUEST_LOCATION_CODE = 99;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -52,10 +51,6 @@ public class GoogleSignInActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_sign_in);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            checkLocationPermission();
-        }
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
@@ -226,35 +221,4 @@ public class GoogleSignInActivity extends BaseActivity implements
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode){
-            case REQUEST_LOCATION_CODE:
-                if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    //permission granted
-
-                }else{
-                    Toast.makeText(this,"Permission Denied!",Toast.LENGTH_SHORT).show();
-                }
-                return;
-        }
-    }
-
-
-    public boolean checkLocationPermission(){
-
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION)){
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_LOCATION_CODE);
-            }else{
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_LOCATION_CODE);
-            }
-
-            return false;
-
-        }else
-            return  true;
-
-    }
 }
