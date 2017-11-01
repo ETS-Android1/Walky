@@ -2,6 +2,8 @@ package com.example.jahid.walky;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -10,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -26,26 +29,26 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
     private GoogleMap mMap;
-    private GoogleApiClient client;
     private LocationRequest locationRequest;
     private Location lastLocation;
+    private GoogleApiClient client;
     private Marker currentLocationMarker;
-    public static final int REQUEST_LOCATION_CODE = 99;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            checkLocationPermission();
-        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -53,24 +56,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode){
-            case REQUEST_LOCATION_CODE:
-                if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    //permission granted
-                    if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                        if(client == null){
-                            buildGoogleApiClient();
-                        }
-                        mMap.setMyLocationEnabled(true);
-                    }
-                }else{
-                    Toast.makeText(this,"Permission Denied!",Toast.LENGTH_SHORT).show();
-                }
-                return;
-        }
-    }
 
 
     /**
@@ -90,6 +75,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             buildGoogleApiClient();
             mMap.animateCamera(CameraUpdateFactory.zoomBy(15));
             mMap.setMyLocationEnabled(true);
+
+            //searching for a location
+            showLocation("Shaheed Minar",mMap);
+
         }
 
     }
@@ -142,22 +131,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public boolean checkLocationPermission(){
 
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)){
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_LOCATION_CODE);
-            }else{
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_LOCATION_CODE);
-            }
-
-            return false;
-
-        }else
-            return  true;
-
-    }
 
     @Override
     public void onConnectionSuspended(int i) {
@@ -168,4 +142,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    private void showLocation(String address, GoogleMap map){
+        Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
+        try
+        {
+            List<Address> addresses = geoCoder.getFromLocationName(address, 5);
+            if (addresses.size() > 0)
+            {
+                Double lat = (double) (addresses.get(0).getLatitude());
+                Double lon = (double) (addresses.get(0).getLongitude());
+
+                Log.d("lat-long", "" + lat + "......." + lon);
+                final LatLng user = new LatLng(lat, lon);
+
+                //if(calculateDistance(user)<=1500) {
+        /*used marker for show the location */
+                    Marker marker = map.addMarker(new MarkerOptions()
+                            .position(user)
+                            .title(address)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                    // Move the camera instantly to hamburg with a zoom of 15.
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(user, 15));
+
+                    // Zoom in, animating the camera.
+                    map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+                //}
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private float calculateDistance(LatLng location){
+        float[] results = new float[1];
+        Location.distanceBetween(location.latitude, location.longitude,
+                lastLocation.getLatitude(), lastLocation.getLongitude(),
+                results);
+        return results[0];
+    }
+
 }
