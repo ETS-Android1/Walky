@@ -183,20 +183,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            if((int) calculateDistance(currentLat,currentLong,latLng.latitude,latLng.longitude)<=1500) {
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                markerOptions.title(location);
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                map.addMarker(markerOptions);
-                map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            if(addressList.size()>0) {
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                if ((int) calculateDistance(currentLat, currentLong, latLng.latitude, latLng.longitude) <= 1500) {
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+                    markerOptions.title(location);
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    map.addMarker(markerOptions);
+                    map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                }
+
+                //Toast.makeText(this, (int) calculateDistance(currentLat,currentLong,latLng.latitude,latLng.longitude)+"",Toast.LENGTH_SHORT).show();
+
+                Log.d("Address", address.toString());
             }
-
-            //Toast.makeText(this, (int) calculateDistance(currentLat,currentLong,latLng.latitude,latLng.longitude)+"",Toast.LENGTH_SHORT).show();
-
-            Log.d("Address", address.toString());
         }else{
             Toast.makeText(this,"empty location",Toast.LENGTH_SHORT).show();
         }
