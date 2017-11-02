@@ -9,26 +9,22 @@
             android:title="Near Walking Routes" />
 
         <item
-            android:id="@+id/nav_progress"
-            android:icon="@drawable/ic_progress_black_24dp"
-            android:title="Progress" />
-
-        <item
             android:id="@+id/nav_walking_tips"
             android:icon="@drawable/ic_transfer_within_a_station_black_24dp"
             android:title="Walking Tips" />
         <item
             android:id="@+id/nav_pet"
-            android:icon="@drawable/ic_progress_black_24dp"
+            android:icon="@drawable/app_logo"
             android:title="Your Pet" />
+        <item
+            android:id="@+id/schedule"
+            android:icon="@drawable/app1"
+            android:title="Schedule Walking Time" />
     </group>
 
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+
             <item
                 android:id="@+id/signout"
                 android:icon="@drawable/ic_menu_send"

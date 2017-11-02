@@ -35,24 +35,30 @@
             <ProgressBar
                 android:id="@+id/health"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="255dp"
-                android:layout_height="38dp"
+                android:layout_width="221dp"
+                android:layout_height="53dp"
                 android:layout_weight="1"
-                tools:layout_editor_absoluteY="441dp"
-                android:layout_marginLeft="88dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:progressTint="@android:color/black" />
+                android:paddingLeft="110dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewPet"
+                android:progressTint="@android:color/black"
+                tools:layout_editor_absoluteX="91dp"
+                android:layout_marginBottom="-4dp" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="72dp"
-                android:layout_height="42dp"
+                android:layout_width="334dp"
+                android:layout_height="17dp"
+                android:fontFamily="@string/hint_phone_number"
                 android:text="Health"
-                android:textSize="22dp"
-                android:textColor="@android:color/black"
+                android:textSize="13dp"
+                android:gravity="center"
 
-                tools:layout_editor_absoluteY="445dp"
-                tools:layout_editor_absoluteX="32dp" />
+                android:textColor="@android:color/tertiary_text_dark"
+                app:layout_constraintBottom_toBottomOf="@+id/health"
+                tools:layout_editor_absoluteX="43dp"
+                android:layout_marginBottom="0dp"
+                tools:layout_editor_absoluteY="414dp" />
 
         </android.support.constraint.ConstraintLayout>
 

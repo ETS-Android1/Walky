@@ -3,11 +3,11 @@ package com.example.jahid.walky;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ProgressActivity extends AppCompatActivity {
+public class tips extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_progress);
+        setContentView(R.layout.activity_tips);
     }
 }

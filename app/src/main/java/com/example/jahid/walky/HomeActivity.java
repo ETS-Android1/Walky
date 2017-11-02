@@ -82,18 +82,21 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_progress) {
-            Intent intent = new Intent(getApplicationContext(),ProgressActivity.class);
-            startActivity(intent);
-        }
-        else if (id == R.id.nav_pet) {
+         if (id == R.id.nav_pet) {
             Intent intent = new Intent(getApplicationContext(), pet.class);
             startActivity(intent);
         }
         else if (id == R.id.signout) {
-            Intent intent = new Intent(getApplicationContext(), GoogleSignInActivity.class);
+            Intent intent = new Intent(getApplicationContext(), GoogleSignOutActivity.class);
             startActivity(intent);
         }
+         else if (id == R.id.nav_walking_tips) {
+             Intent intent = new Intent(getApplicationContext(),tips.class);
+             startActivity(intent);
+         } else if (id == R.id.schedule) {
+             Intent intent = new Intent(getApplicationContext(),Schedul_Time.class);
+             startActivity(intent);
+         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
