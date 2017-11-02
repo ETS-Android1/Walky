@@ -15,17 +15,21 @@ import java.util.Calendar;
 
     public class Schedul_Time extends AppCompatActivity {
         Button button;
-
+        int hr,mn;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.schedul__time);
+            setContentView(R.layout.schedule);
           Button button = (Button) findViewById(R.id.SetAlarm);
-            EditText hours= (EditText)findViewById(R.id.hours);
-            EditText minute= (EditText)findViewById(R.id.minute);
-            final int hr=Integer.parseInt(hours.getText().toString());
-            final int mn=Integer.parseInt(minute.getText().toString());
-            button.setOnClickListener(new View.OnClickListener() {
+            EditText hours;
+            hours= (EditText)findViewById(R.id.hours);
+            EditText minute;
+            minute= (EditText)findViewById(R.id.minute);
+            String str=hours.getText().toString();
+             String str2=minute.getText().toString();
+             mn=Integer.parseInt(str2);
+            hr= Integer.parseInt(str);
+           button.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v) {
                     Calendar calendar = Calendar.getInstance();
