@@ -3,26 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:onClick="onClick"
+    android:clickable="true"
     android:layout_height="match_parent"
     tools:context="com.example.jahid.walky.tips">
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="336dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/tips"
+        android:layout_width="355dp"
+        android:textAlignment="center"
         android:layout_height="555dp"
         android:fontFamily="@string/hint_phone_number"
-        android:text="Choose a familiar route that is flat and free of obstacles.
-Consider the surface you’ll be walking on. A smooth, soft surface that’s free of debris will put less strain on your joints and feet.
-Wear supportive footwear – wear low-heeled footwear with non-skid soles.
-Avoid rushing – rushing increases your risk of falling. Take you time.
-If using a walking aid (e.g. cane or walker) ensure that it is fitted for your height.
-Check the Clean Air Peel website for the daily Air Quality Health Index (AQHI) and the Ultraviolet (UV) Index to plan outdoor activities accordingly and to protect your health or the health of seniors in your care.
-Be extra careful in cold weather — sidewalks and paths can be slippery.
-Cold weather can cause numbness and make it difficult for you to feel any pain or an injury. When it’s cold outside, consider walking in an indoor place, like a mall or community fitness centre.
-Walk with friends or a walking club.
-Carry a cell phone in case of emergencies.
-Dress appropriately for the weather and drink plenty of water.
-Stop or take a break if you feel any pain during your walk. Consult a health care provider if pain continues after your walk."
-        android:textSize="14dp"
+        android:text="Consider the surface you’ll be walking on. A smooth, soft surface that’s free of debris will put less strain on your joints and feet.     ---- Tap For Next Tip"
+
+        android:textSize="20dp"
         android:gravity="center"
 
         android:textColor="@android:color/tertiary_text_dark"
