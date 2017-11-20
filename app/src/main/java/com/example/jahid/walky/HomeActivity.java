@@ -2,8 +2,6 @@ package com.example.jahid.walky;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -95,6 +93,9 @@ public class HomeActivity extends AppCompatActivity
              startActivity(intent);
          } else if (id == R.id.schedule) {
              Intent intent = new Intent(getApplicationContext(),Schedul_Time.class);
+             startActivity(intent);
+         }else if (id == R.id.add_location_menu) {
+             Intent intent = new Intent(getApplicationContext(),AddLocationActivity.class);
              startActivity(intent);
          }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

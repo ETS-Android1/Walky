@@ -55,7 +55,8 @@
         <activity android:name=".BaseActivity" />
         <activity android:name=".petanim" />
         <activity android:name=".Schedul_Time" />
-        <activity android:name=".tips"></activity>
+        <activity android:name=".tips" />
+        <activity android:name=".AddLocationActivity"></activity>
     </application>
 
 </manifest>

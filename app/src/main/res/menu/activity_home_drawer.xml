@@ -20,6 +20,10 @@
             android:id="@+id/schedule"
             android:icon="@drawable/app1"
             android:title="Schedule Walking Time" />
+        <item
+            android:id="@+id/add_location_menu"
+            android:icon="@drawable/app1"
+            android:title="Add new location" />
     </group>
 
     <item android:title="Communicate">

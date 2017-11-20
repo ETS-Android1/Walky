@@ -1,10 +1,16 @@
 package com.example.jahid.walky;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -37,6 +43,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -120,7 +128,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Write a message to the database
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Places");
+        DatabaseReference myRef = database.getReference("Place");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -175,6 +183,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void showLocation(String location, GoogleMap map, double currentLat, double currentLong) {
         List<Address>addressList = null;
+        String locationdata="";
         if (location != null || !location.equals("")) {
             Geocoder geocoder = new Geocoder(this);
             try {
@@ -183,16 +192,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(addressList.size()>0) {
+            if(addressList!=null && addressList.size()>0) {
                 Address address = addressList.get(0);
+                Log.d("locatoin name",address.toString());
                 LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                 if ((int) calculateDistance(currentLat, currentLong, latLng.latitude, latLng.longitude) <= 1500) {
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
                     markerOptions.title(location);
-                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_directions_walk_black_24dp));
                     map.addMarker(markerOptions);
                     map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+
                 }
 
                 //Toast.makeText(this, (int) calculateDistance(currentLat,currentLong,latLng.latitude,latLng.longitude)+"",Toast.LENGTH_SHORT).show();
@@ -202,6 +215,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }else{
             Toast.makeText(this,"empty location",Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private double calculateDistance(double fromLong, double fromLat,
@@ -253,6 +267,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }else
             return  true;
+
+    }
+    public void noti(String place)
+    {
+        long v[]={500,1000};
+        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Intent intent = new Intent();
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,0);
+        Notification Noti=new Notification.Builder(this)
+                .setTicker("Your pet")
+                .setVibrate(v)
+                .setSound(uri)
+                .setContentTitle("Near walking route")
+                .setContentText(place)
+                .setSmallIcon(R.drawable.app_logo)
+                .setContentIntent(pendingIntent).getNotification();
+        Noti.flags=Notification.FLAG_AUTO_CANCEL;
+        NotificationManager nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(0,Noti);
+
 
     }
 
